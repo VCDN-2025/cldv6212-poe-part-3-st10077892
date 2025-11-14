@@ -1,0 +1,119 @@
+﻿@model ABC_RETAIL_MVC.Models.LoginViewModel
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background: #fff;
+        padding: 40px 50px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        width: 400px;
+        max-width: 90%;
+        transition: transform 0.3s ease;
+    }
+
+    .login-container:hover {
+        transform: translateY(-3px);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    form div {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 16px;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    }
+
+    input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    span.text-danger {
+        font-size: 14px;
+        color: #d9534f;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <form asp-action="Login" method="post">
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Password</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="remember-me">
+            <input asp-for="RememberMe" type="checkbox" /> Remember me
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
