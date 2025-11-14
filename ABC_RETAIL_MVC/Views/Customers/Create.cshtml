@@ -1,0 +1,41 @@
+﻿@model ABC_RETAIL_MVC.Models.DatabaseModels.Customer
+
+@{
+    ViewData["Title"] = "Create Customer";
+}
+
+<h2>Create Customer</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="CustomerName" class="form-label"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CustomerEmail" class="form-label"></label>
+        <input asp-for="CustomerEmail" class="form-control" />
+        <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CustomerPhone" class="form-label"></label>
+        <input asp-for="CustomerPhone" class="form-control" />
+        <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CustomerAddress" class="form-label"></label>
+        <input asp-for="CustomerAddress" class="form-control" />
+        <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

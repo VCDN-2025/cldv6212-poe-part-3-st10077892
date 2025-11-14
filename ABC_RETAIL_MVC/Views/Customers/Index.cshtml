@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ABC_RETAIL_MVC.Models.DatabaseModels.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h2>Customers</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Customer</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var customer in Model.OrderByDescending(c => c.CustomerId))
+        {
+            <tr>
+                <td>@customer.CustomerId</td>
+                <td>@customer.CustomerName</td>
+                <td>@customer.CustomerEmail</td>
+                <td>@customer.CustomerPhone</td>
+                <td>@customer.CustomerAddress</td>
+            </tr>
+        }
+    </tbody>
+</table>
