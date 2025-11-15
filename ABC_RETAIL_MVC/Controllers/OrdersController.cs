@@ -2,6 +2,7 @@
 using ABC_RETAIL_MVC.Data;
 using ABC_RETAIL_MVC.Models.DatabaseModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ABC_RETAIL_MVC.Controllers
 {
@@ -19,16 +20,10 @@ namespace ABC_RETAIL_MVC.Controllers
         {
             // Include Customer and Product info for display
             var orders = _context.Orders
-                .Select(o => new Order
-                {
-                    OrderId = o.OrderId,
-                    CustomerId = o.CustomerId,
-                    Customer = o.Customer,
-                    ProductId = o.ProductId,
-                    Product = o.Product,
-                    Quantity = o.Quantity,
-                    OrderDate = o.OrderDate
-                }).ToList();
+                .Include(o => o.Customer) // eager load Customer
+                .Include(o => o.Product)  // eager load Product
+                .OrderByDescending(o => o.OrderDate)
+                .ToList();
 
             return View(orders);
         }

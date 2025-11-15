@@ -28,6 +28,16 @@ else
                     <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-danger">
                         Remove
                     </a>
+
+                    @if (Model.Any())
+                    {
+                        <div class="mt-4 text-end">
+                            <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success btn-lg">
+                                ✅ Checkout
+                            </a>
+                        </div>
+                    }
+
                 </td>
             </tr>
         }

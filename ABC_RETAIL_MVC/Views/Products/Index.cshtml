@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<Product>
 
-
-
 @{
     ViewData["Title"] = "Products";
 }
@@ -19,6 +17,7 @@
             <th>Price</th>
             <th>Stock</th>
             <th>Description</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +28,19 @@
                 <td>@product.ProductPrice.ToString("C")</td>
                 <td>@product.Stock</td>
                 <td>@product.ProductDescription</td>
+                <td>
+                    <a asp-controller="Cart"
+                       asp-action="AddToCart"
+                       asp-route-id="@product.ProductId"
+                       asp-route-name="@product.ProductName"
+                       asp-route-price="@product.ProductPrice"
+                       asp-route-imageUrl="@product.ProductImageUrl"
+                       class="btn btn-success">
+                        Add to Cart
+                    </a>
+                </td>
             </tr>
         }
+
     </tbody>
 </table>
