@@ -20,9 +20,9 @@
         transition: transform 0.3s ease;
     }
 
-    .login-container:hover {
-        transform: translateY(-3px);
-    }
+        .login-container:hover {
+            transform: translateY(-3px);
+        }
 
     h2 {
         text-align: center;
@@ -53,11 +53,11 @@
         transition: border 0.3s ease, box-shadow 0.3s ease;
     }
 
-    input[type="text"]:focus,
-    input[type="password"]:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0,123,255,0.3);
-    }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        }
 
     input[type="checkbox"] {
         margin-right: 8px;
@@ -81,9 +81,9 @@
         transition: background 0.3s ease;
     }
 
-    button[type="submit"]:hover {
-        background-color: #0056b3;
-    }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
 
     span.text-danger {
         font-size: 14px;
@@ -97,21 +97,38 @@
     <h2>Login</h2>
 
     <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken() <!-- ⚡ Important for POST requests -->
+
         <div>
-            <label>Email</label>
-            <input asp-for="Email" />
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+
         <div>
-            <label>Password</label>
-            <input asp-for="Password" type="password" />
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
+
         <div class="remember-me">
-            <input asp-for="RememberMe" type="checkbox" /> Remember me
+            <input asp-for="RememberMe" type="checkbox" />
+            <label asp-for="RememberMe">Remember me</label>
         </div>
+
         <button type="submit">Login</button>
     </form>
+
+    @* Display any login errors *@
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+        <div class="mt-3 text-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
 </div>
 
 @section Scripts {
